@@ -12,4 +12,3 @@ def test_list_without_e():
     list1 = [i for i in xrange(50, 100)]
     found = bSearch(list1, 10)
     assert found is False
-
