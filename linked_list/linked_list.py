@@ -7,10 +7,11 @@ class Node(object):
 
 class linkedList(object):
 
-    def __init__(self):
-        self.head = None
+    def __init__(self, head=None):
+        self.head = head
 
     def insert(self, node):
+
         if not self.head:
             self.head = node
         else:
@@ -19,8 +20,14 @@ class linkedList(object):
             # reset head to new node
             self.head = node
 
-    def search(self, value):
-        pass
+    def search(self, lList, value):
+        if self.head.data == value:
+            return self.head
+        else:
+            if lList.head.nextNode:
+                self.search(lList(lList.head.nextNode), value)
+            else:
+                raise ValueError("Node not in Linked List")
 
     def delete(self, value):
         pass
