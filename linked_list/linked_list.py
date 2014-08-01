@@ -25,7 +25,7 @@ class linkedList(object):
             return self.head
         else:
             if lList.head.nextNode:
-                self.search(lList(lList.head.nextNode), value)
+                self.search(linkedList(lList.head.nextNode), value)
             else:
                 raise ValueError("Node not in Linked List")
 

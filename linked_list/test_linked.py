@@ -1,4 +1,5 @@
 from linked_list import *
+import pytest
 
 
 def test_insert():
@@ -12,6 +13,18 @@ def test_search():
     linkedlist = linkedList()
     one = Node('Jacob')
     two = Node('Pallymay')
+    three = Node('Rasmus')
     linkedlist.insert(one)
     linkedlist.insert(two)
-    assert linkedlist.search(linkedlist, 'Pallymay') == two
+    linkedlist.insert(three)
+    assert linkedlist.search(linkedlist, 'Rasmus') == three
+
+
+def test_searchNone():
+    linkedlist = linkedList()
+    one = Node('Jacob')
+    two = Node('Pallymay')
+    linkedlist.insert(one)
+    linkedlist.insert(two)
+    with pytest.raises(ValueError):
+        linkedlist.search(linkedlist, 'Peter')
