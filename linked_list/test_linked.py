@@ -62,4 +62,4 @@ def test_delete():
     linkedlist.insert(two)
     linkedlist.insert(three)
     linkedlist.delete(two)
-    assert linkedlist.head.nextNode == two
+    assert linkedlist.head.nextNode == one
