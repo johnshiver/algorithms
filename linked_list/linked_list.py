@@ -29,5 +29,5 @@ class linkedList(object):
             else:
                 raise ValueError("Node not in Linked List")
 
-    def delete(self, value):
-        pass
+    def delete(self, node):
+
