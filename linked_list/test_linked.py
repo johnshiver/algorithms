@@ -63,3 +63,19 @@ def test_delete():
     linkedlist.insert(three)
     linkedlist.delete(two)
     assert linkedlist.head.nextNode == one
+
+
+def test_delete_empty():
+    linkedlist = linkedList()
+    one = Node('Pork')
+    with pytest.raises(ValueError):
+        linkedlist.delete(one)
+
+
+def test_delete_when_second_no_item():
+    linkedlist = linkedList()
+    one = Node("Peanut")
+    two = Node("Butter")
+    linkedlist.insert(one)
+    with pytest.raises(ValueError):
+        linkedlist.delete(two)
