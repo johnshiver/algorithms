@@ -1,81 +1,92 @@
-from linked_list import *
+from linked_list import Node, LinkedList
 import pytest
 
 
 def test_insert():
-    linkedlist = linkedList()
-    one = Node('Jacob')
-    linkedlist.insert(one)
-    assert linkedlist.head == one
-    assert linkedlist.head.data == 'Jacob'
+    l_list = LinkedList()
+    l_list.insert("David")
+    assert l_list.head.get_data() == "David"
+    assert l_list.head.get_next() is None
 
 
 def test_insert_two():
-    linkedlist = linkedList()
-    one = Node('Jacob')
-    two = Node('Thomas')
-    linkedlist.insert(one)
-    linkedlist.insert(two)
-    assert linkedlist.head == two
-    assert linkedlist.head.nextNode == one
+    l_list = LinkedList()
+    l_list.insert("David")
+    l_list.insert("Thomas")
+    assert l_list.head.get_data() == "Thomas"
+    head_next = l_list.head.get_next()
+    assert head_next.get_data() == "David"
 
 
 def test_nextNode():
-    linked = linkedList()
-    one = Node('Jacob')
-    two = Node('Pallymay')
-    three = Node('Rasmus')
-    linked.insert(one)
-    linked.insert(two)
-    linked.insert(three)
-    assert linked.head == three
-    assert linked.head.nextNode == two
+    l_list = LinkedList()
+    l_list.insert("Jacob")
+    l_list.insert("Pallymay")
+    l_list.insert("Rasmus")
+    assert l_list.head.get_data() == "Rasmus"
+    head_next = l_list.head.get_next()
+    assert head_next.get_data() == "Pallymay"
+    last = head_next.get_next()
+    assert last.get_data() == "Jacob"
 
 
-def test_search():
-    linkedlist = linkedList()
-    one = Node('Jacob')
-    two = Node('Pallymay')
-    three = Node('Rasmus')
-    linkedlist.insert(one)
-    linkedlist.insert(two)
-    linkedlist.insert(three)
-    assert linkedlist.search(linkedlist, 'Rasmus') == three
+def test_positive_search():
+    l_list = LinkedList()
+    l_list.insert("Jacob")
+    l_list.insert("Pallymay")
+    l_list.insert("Rasmus")
+    found = l_list.search("Jacob")
+    assert found.get_data() == "Jacob"
+    found = l_list.search("Pallymay")
+    assert found.get_data() == "Pallymay"
+    found = l_list.search("Jacob")
+    assert found.get_data() == "Jacob"
 
 
 def test_searchNone():
-    linkedlist = linkedList()
-    one = Node('Jacob')
-    two = Node('Pallymay')
-    linkedlist.insert(one)
-    linkedlist.insert(two)
+    l_list = LinkedList()
+    l_list.insert("Jacob")
+    l_list.insert("Pallymay")
+    # make sure reg search works
+    found = l_list.search("Jacob")
+    assert found.get_data() == "Jacob"
     with pytest.raises(ValueError):
-        linkedlist.search(linkedlist, 'Portugal')
+        l_list.search("Vincent")
 
 
 def test_delete():
-    linkedlist = linkedList()
-    one = Node('Jacob')
-    two = Node('Pallymay')
-    three = Node("Fawcet")
-    linkedlist.insert(one)
-    linkedlist.insert(two)
-    linkedlist.insert(three)
-    linkedlist.delete(two)
-    assert linkedlist.head.nextNode == one
+    l_list = LinkedList()
+    l_list.insert("Jacob")
+    l_list.insert("Pallymay")
+    l_list.insert("Rasmus")
+    l_list.delete("Rasmus")
+    assert l_list.head.get_data() == "Pallymay"
+    l_list.delete("Jacob")
+    assert l_list.head.get_next() is None
 
 
-def test_delete_empty():
-    linkedlist = linkedList()
-    one = Node('Pork')
+def test_delete_value_not_in_list():
+    l_list = LinkedList()
+    l_list.insert("Jacob")
+    l_list.insert("Pallymay")
+    l_list.insert("Rasmus")
     with pytest.raises(ValueError):
-        linkedlist.delete(one)
+        l_list.delete("Sunny")
 
 
-def test_delete_when_second_no_item():
-    linkedlist = linkedList()
-    one = Node("Peanut")
-    two = Node("Butter")
-    linkedlist.insert(one)
+def test_delete_empty_list():
+    l_list = LinkedList()
     with pytest.raises(ValueError):
-        linkedlist.delete(two)
+        l_list.delete("Sunny")
+
+
+def test_delete_next_reassignment():
+    l_list = LinkedList()
+    l_list.insert("Jacob")
+    l_list.insert("Cid")
+    l_list.insert("Pallymay")
+    l_list.insert("Rasmus")
+    l_list.delete("Pallymay")
+    l_list.delete("Cid")
+    assert l_list.head.next.get_data() == "Jacob"
+

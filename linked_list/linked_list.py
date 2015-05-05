@@ -1,62 +1,62 @@
 class Node(object):
 
-    def __init__(self, data=None, nextNode=None):
+    def __init__(self, data=None, next=None):
         self.data = data
-        self.nextNode = nextNode
+        self.next = next
+
+    def get_data(self):
+        return self.data
+
+    def get_next(self):
+        return self.next
+
+    def set_next(self, new_next):
+        self.next = new_next
 
 
-class linkedList(object):
+class LinkedList(object):
 
     def __init__(self, head=None):
         self.head = head
-        self.size = 0
 
-    def insert(self, node):
-
-        if not self.head:
-            self.head = node
-            self.size += 1
-        else:
-            # set new nodes pointer to old head
-            node.nextNode = self.head
-            # reset head to new node
-            self.head = node
-            self.size +=1
-
-    def search(self, lList, value):
-        if self.head.data == value:
-            return self.head
-        else:
-            if lList.head.nextNode:
-                self.search(linkedList(lList.head.nextNode), value)
-            else:
-                raise ValueError("Node not in Linked List")
+    def insert(self, data):
+        new_node = Node(data)
+        new_node.set_next(self.head)
+        self.head = new_node
 
     def size(self):
-        return self.size
+        current = self.head
+        count = 0
+        while current is not None:
+            count += 1
+            current = current.get_next()
+        return count
 
-    def delete(self, node):
-        if self.size < 1:
-            raise ValueError("No items in List")
-        if self.head == node:
-            self.head = self.head.nextNode
-            self.size -= 1
-        if self.size > 1:
-            found = False
-            previous = self.head
-            current = self.head.nextNode
-            while not found:
-                if current == node:
-                    previous.nextNode = current.nextNode
-                    self.size -= 1
-                    found = True
-                elif current.nextNode:
-                    previous = current
-                    current = current.nextNode
-                else:
-                    raise ValueError("Node not in List")
+    def search(self, data):
+        current = self.head
+        found = False
+        while current is not None and found is False:
+            if current.get_data() == data:
+                found = True
+            else:
+                current = current.get_next()
+        if current is None:
+            raise ValueError("Data not in list")
+        return current
+
+    def delete(self, data):
+        current = self.head
+        previous = None
+        found = False
+        while found is False and current is not None:
+            if current.get_data() == data:
+                found = True
+            else:
+                previous = current
+                current = current.get_next()
+        if current is None:
+            raise ValueError("Data not in list")
+        if previous is None:
+            self.head = current.get_next()
         else:
-            raise ValueError("Node not in List")
-
-
-
+            previous.set_next(current.get_next())
