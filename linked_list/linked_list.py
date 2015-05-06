@@ -1,17 +1,17 @@
 class Node(object):
 
-    def __init__(self, data=None, next=None):
+    def __init__(self, data=None, next_node=None):
         self.data = data
-        self.next = next
+        self.next_node = next_node
 
     def get_data(self):
         return self.data
 
     def get_next(self):
-        return self.next
+        return self.next_node
 
     def set_next(self, new_next):
-        self.next = new_next
+        self.next_node = new_next
 
 
 class LinkedList(object):
@@ -27,7 +27,7 @@ class LinkedList(object):
     def size(self):
         current = self.head
         count = 0
-        while current is not None:
+        while current:
             count += 1
             current = current.get_next()
         return count
@@ -35,7 +35,7 @@ class LinkedList(object):
     def search(self, data):
         current = self.head
         found = False
-        while current is not None and found is False:
+        while current and found is False:
             if current.get_data() == data:
                 found = True
             else:
@@ -48,7 +48,7 @@ class LinkedList(object):
         current = self.head
         previous = None
         found = False
-        while found is False and current is not None:
+        while current and found is False:
             if current.get_data() == data:
                 found = True
             else:

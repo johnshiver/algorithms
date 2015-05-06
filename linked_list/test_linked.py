@@ -88,5 +88,5 @@ def test_delete_next_reassignment():
     l_list.insert("Rasmus")
     l_list.delete("Pallymay")
     l_list.delete("Cid")
-    assert l_list.head.next.get_data() == "Jacob"
+    assert l_list.head.next_node.get_data() == "Jacob"
 
