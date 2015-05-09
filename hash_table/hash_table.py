@@ -43,3 +43,30 @@ class HashTable(object):
         middle_two = int(square[(len(square) // 2) - 1: (len(square) // 2) + 1])
         return middle_two % len(self.table)
 
+    def hash_string(self, string):
+        u"""
+        returns hash of a string with weighting
+        """
+        total = 0
+        for c in range(len(string)):
+            total += ord(string[c]) * c
+
+        return total % len(self.table)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
