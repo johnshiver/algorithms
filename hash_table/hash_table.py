@@ -35,5 +35,11 @@ class HashTable(object):
         """
         pass
 
-    def 
+    def mid_square_method(self, value):
+        u"""
+        Square the value then extract some portion of resulting digits
+        """
+        square = str(value**2)
+        middle_two = int(square[(len(square) // 2) - 1: (len(square) // 2) + 1])
+        return middle_two % len(self.table)
 
