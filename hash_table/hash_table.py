@@ -2,16 +2,29 @@
 Hash Table Implementation
 
 Data structure that can be searched in O(1)
+
 """
+
+import random
 
 
 class HashTable(object):
     u"""
     Simple implementation of Hash table
     """
-    def __init__(self):
-        self.table = []
+    def __init__(self, length, hash_method='mid_square'):
+        self.table = [[] for i in range(length)]
+        self.hash_method = self.mid_square_method
 
+    def insert(self, value):
+        if type(value) == str:
+            hash_val = self.hash_string(value)
+        else:
+            hash_val = self.hash_method(value)
+        slot = self.open_addressing_linear_proving(hash_val)
+        return self.table[slot].append(value)
+
+    # Hash Functions
     def remainder_method(self, value):
         u"""
         divides item by table size and returns the remainder
@@ -49,15 +62,36 @@ class HashTable(object):
         """
         total = 0
         for c in range(len(string)):
-            total += ord(string[c]) * c
+            total += ord(string[c]) * (c+1)
 
         return total % len(self.table)
 
+    # Collision resolutions
+    def open_addressing_linear_proving(self, slot):
+        u"""
+        Tries to find next open slot or address in the hash table after collision
+        by visiting each node until finding an open one
+        *thid method succeptible to clustering
+        """
+        if len(self.table[slot]) == 0:
+            return slot
+        for i in range(len(self.table)):
+            if len(self.table[i]) == 0:
+                return i
+        return random.choice(xrange((len(self.table)-1)))
 
+    def open_addressing_rehashing(self, probe_length):
+        u"""
+        Tries to find next open slot or address in the hash table after collision
+        by visiting every probe_length slot until one is open
+        Example: if probe length is 3, will visit every third slot until
+        there is an open one
+        *thid method succeptible to clustering
+        """
+        pass
 
-
-
-
+    def chaining_search(self):
+        pass
 
 
 
