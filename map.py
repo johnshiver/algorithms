@@ -22,8 +22,31 @@ class HashTable(object):
         else:
             self.data[next_slot] = data  # replace the current value
 
+    def get(self, key):
+        start = self.hash_function(key, self.size)
+
+        data = None
+        stop = False
+        found = False
+        position = start
+        while self.slots[position] != None and not found and not stop:
+            if self.slots[position] == key:
+                found = True
+                data = self.data[position]
+            else:
+                position = self.rehash(position)
+                if position is start:
+                    stop = True
+        return data
+
     def hash_function(self, key):
         return key % self.size
 
     def rehash(self, old_hash):
         return (old_hash+1) % self.size
+
+    def __getitem__(self, key):
+        return self.get(key)
+
+    def __setitem__(self, key, data):
+        self.put(key, data)
