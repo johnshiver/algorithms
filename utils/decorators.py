@@ -33,5 +33,5 @@ def make_list_for_loop(size):
     for _ in range(size):
         for_loop.append(random.randint(1, 100))
 
-make_list_comprehension(10000000)
-make_list_for_loop(10000000)
+make_list_comprehension(1000000)
+make_list_for_loop(1000000)
