@@ -11,7 +11,7 @@ def time_this(function_to_time):
         start = time.time()
         result = function_to_time(*args, **kwargs)
         end = time.time()
-        print("%s (%s, %s) %.4f sec" % (function_to_time.__name__, args, kwargs, float(end-start)))
+        print("%s (%s, %s) %.4f sec" % (function_to_time.__name__, args, kwargs, end-start))
         return result
 
     return timer
