@@ -3,7 +3,7 @@ import os.path
 
 sys.path.append(os.path.join(os.path.abspath(os.pardir), "hash_table"))
 
-from hash_table import HashTable
+from hash_table.hash_table import HashTable
 import unittest
 
 class TestHashTable(unittest.TestCase):
@@ -14,7 +14,7 @@ class TestHashTable(unittest.TestCase):
         self.hash_table = None
 
     def test_create_table(self):
-        self.assertTrue(self.hash_table.table  == [[], [], [], []])
+        self.assertTrue(self.hash_table.table == [[], [], [], []])
 
     def test_remainder_method(self):
         self.assertTrue(self.hash_table.remainder_method(30) == 2)

@@ -3,8 +3,9 @@ import os.path
 
 sys.path.append(os.path.join(os.path.abspath(os.pardir), "linked_list"))
 
-from linked_list import Node, LinkedList
+from linked_list.linked_list import Node, LinkedList
 import unittest
+
 
 class TestLinkedList(unittest.TestCase):
     def setUp(self):
@@ -55,7 +56,6 @@ class TestLinkedList(unittest.TestCase):
         found = self.list.search("Jacob")
         self.assertTrue(found.get_data() == "Jacob")
 
-
     def test_searchNone(self):
         self.list.insert("Jacob")
         self.list.insert("Pallymay")
@@ -67,7 +67,6 @@ class TestLinkedList(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             self.list.search("Vincent")
-
 
     def test_delete(self):
         self.list.insert("Jacob")
@@ -81,7 +80,6 @@ class TestLinkedList(unittest.TestCase):
         # Delete the list tail
         self.list.delete("Jacob")
         self.assertTrue(self.list.head.get_next() is None)
-
 
     def test_delete_value_not_in_list(self):
         self.list.insert("Jacob")
