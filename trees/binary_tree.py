@@ -15,3 +15,4 @@ class BinaryTree(object):
             self.right = new_tree
         else:
             self.left = new_tree
+        new_tree.parent = self
