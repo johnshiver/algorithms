@@ -40,3 +40,39 @@ class TestBinaryTree(unittest.TestCase):
         smaller_tree = BinaryTree(1)
         self.root.add_tree(smaller_tree)
         self.assertEqual(self.root, smaller_tree.parent)
+
+    def test_add_two_right(self):
+        self.root.value = 5
+        bigger_tree = BinaryTree(10)
+        even_bigger_tree = BinaryTree(15)
+        self.root.add_tree(bigger_tree)
+        self.root.add_tree(even_bigger_tree)
+        self.assertEqual(even_bigger_tree, self.root.right.right)
+
+    def test_add_two_left(self):
+        self.root.value = 5
+        smaller_tree = BinaryTree(3)
+        even_smaller_tree = BinaryTree(1)
+        self.root.add_tree(smaller_tree)
+        self.root.add_tree(even_smaller_tree)
+        self.assertEqual(even_smaller_tree, self.root.left.left)
+
+    def test_add_two_right_one_nested_left(self):
+        self.root.value = 5
+        bigger_tree = BinaryTree(10)
+        even_bigger_tree = BinaryTree(15)
+        self.root.add_tree(bigger_tree)
+        self.root.add_tree(even_bigger_tree)
+        middle_tree = BinaryTree(13)
+        self.root.add_tree(middle_tree)
+        self.assertEqual(middle_tree, self.root.right.right.left)
+
+    def test_add_two_left_one_nested_right(self):
+        self.root.value = 15
+        smaller_tree = BinaryTree(10)
+        even_smaller_tree = BinaryTree(3)
+        self.root.add_tree(smaller_tree)
+        self.root.add_tree(even_smaller_tree)
+        middle_tree = BinaryTree(7)
+        self.root.add_tree(middle_tree)
+        self.assertEqual(middle_tree, self.root.left.left.right)

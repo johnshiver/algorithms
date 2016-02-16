@@ -12,7 +12,14 @@ class BinaryTree(object):
 
     def add_tree(self, new_tree):
         if new_tree.value > self.value:
-            self.right = new_tree
+            if not self.right:
+                self.right = new_tree
+                new_tree.parent = self
+            else:
+                self.right.add_tree(new_tree)
         else:
-            self.left = new_tree
-        new_tree.parent = self
+            if not self.left:
+                self.left = new_tree
+                new_tree.parent = self
+            else:
+                self.left.add_tree(new_tree)
