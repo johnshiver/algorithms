@@ -64,3 +64,22 @@ class TestBinaryTree(unittest.TestCase):
         self.root.add_tree(3)
         self.root.add_tree(7)
         self.assertEqual(7, self.root.left.left.right.value)
+
+    def test_search_for_simple_right(self):
+        self.root.value = 10
+        self.root.add_tree(15)
+        self.assertEqual(15, self.root.search_for_value(15).value)
+
+    def test_search_for_simple_left(self):
+            self.root.value = 10
+            self.root.add_tree(5)
+            self.assertEqual(5, self.root.search_for_value(5).value)
+
+    def test_search_two_left_one_nested_right(self):
+        self.root.value = 15
+        self.root.add_tree(10)
+        self.root.add_tree(3)
+        self.root.add_tree(7)
+        self.assertEqual(3, self.root.search_for_value(3).value)
+
+    # def test_search_for
