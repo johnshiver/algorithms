@@ -10,16 +10,16 @@ class BinaryTree(object):
         self.right = None
         self.left = None
 
-    def add_tree(self, new_tree):
-        if new_tree.value > self.value:
+    def add_tree(self, new_value):
+        if new_value > self.value:
             if not self.right:
-                self.right = new_tree
-                new_tree.parent = self
+                self.right = BinaryTree(new_value)
+                self.right.parent = self
             else:
-                self.right.add_tree(new_tree)
+                self.right.add_tree(new_value)
         else:
             if not self.left:
-                self.left = new_tree
-                new_tree.parent = self
+                self.left = BinaryTree(new_value)
+                self.left.parent = self
             else:
-                self.left.add_tree(new_tree)
+                self.left.add_tree(new_value)
