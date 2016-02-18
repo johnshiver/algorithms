@@ -50,30 +50,41 @@ class BinaryTree(object):
         else:
             if not deleted_node.parent:
                 raise ValueError("cant delete the root node!")
+            # if on right side
             if deleted_node.parent.right == deleted_node:
-                if not deleted_node.right and not deleted_node.left:
-                    deleted_node.parent == None
-                    deleted_node.parent.right == None
-
-                else:
-                    deleted_node.parent.right = max(filter(None, deleted_node.left, deleted_node.right))
+                if self._is_leaf(deleted_node):
+                    deleted_node.parent.right = None
+                elif self._has_one_branch(deleted_node):
+                    deleted_node.parent.right = deleted_node.right if deleted_node.right else deleted_node.left
+            # if on left side
             else:
-                if not deleted_node.right and not deleted_node.left:
-                    deleted_node.parent == None
-                    deleted_node.parent.left == None
-                else:
-                    deleted_node.parent.right = max(filter(None, deleted_node.left, deleted_node.right))
-
-        return deleted_node
+                if self._is_leaf(deleted_node):
+                    deleted_node.parent.left = None
+                elif self._has_one_branch(deleted_node):
+                    deleted_node.parent.left = deleted_node.left if deleted_node.left else deleted_node.right
+        return
 
     def search_for_value(self, search_value):
         if search_value is None:
-            raise ValueError("Cannot search for None!")
+            raise ValueError
         if self.value == search_value:
             return self
         if self.right:
             return self.right.search_for_value(search_value)
         if self.left:
             return self.left.search_for_value(search_value)
-        raise ValueError("{} not in my tree", search_value)
+        raise ValueError
+
+    @staticmethod
+    def _is_leaf(tree):
+        return all(branch is None for branch in (tree.left, tree.right))
+
+    @staticmethod
+    def _has_one_branch(tree):
+        return not all((tree.left, tree.right))
+
+    @staticmethod
+    def _hash_two_branches(tree):
+        return all((tree.left, tree.right))
+
 

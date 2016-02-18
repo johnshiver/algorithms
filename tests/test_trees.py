@@ -82,14 +82,14 @@ class TestBinaryTree(unittest.TestCase):
         self.root.add(7)
         self.assertEqual(3, self.root.search_for_value(3).value)
 
-    def test_delete_left(self):
+    def test_delete_left_leaf(self):
         self.root.value = 10
         self.root.add(5)
         self.root.delete(5)
-        self.assertIsNone(self.root.left)
+        self.assertRaises(ValueError, self.root.search_for_value, 5)
 
-    def test_delete_right(self):
+    def test_delete_right_leaf(self):
         self.root.value = 10
         self.root.add(15)
         self.root.delete(15)
-        self.assertIsNone(self.root.right)
+        self.assertRaises(ValueError, self.root.search_for_value, 15)
