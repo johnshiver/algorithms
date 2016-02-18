@@ -52,7 +52,7 @@ class BinaryTree(object):
             else:  # can assume two branches
                 replacement = tree.right
                 while not self._is_leaf(replacement):
-                    replacement = replacement.right
+                    replacement = replacement.left
                 tree.parent.right.value = replacement.value
                 self.delete(replacement)
             # if on left side
@@ -65,7 +65,7 @@ class BinaryTree(object):
             else:  # can assume two branches
                 replacement = tree.right
                 while not self._is_leaf(replacement):
-                    replacement = replacement.right
+                    replacement = replacement.left
                 tree.parent.left.value = replacement.value
                 self.delete(replacement)
 
