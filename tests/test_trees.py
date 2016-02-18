@@ -111,3 +111,25 @@ class TestBinaryTree(unittest.TestCase):
         tree_to_remove = self.root.search_for_value(5)
         self.root.delete(tree_to_remove)
         self.assertRaises(ValueError, self.root.search_for_value, 5)
+
+    def test_delete_right_two_branches(self):
+        self.root.value = 10
+        self.root.add(15)
+        self.root.add(20)
+        self.root.add(12)
+        tree_to_remove = self.root.search_for_value(15)
+        self.root.delete(tree_to_remove)
+        self.assertRaises(ValueError, self.root.search_for_value, 15)
+        self.assertEqual(12, self.root.right.left.value)
+        self.assertEqual(20, self.root.right.value)
+
+    def test_delete_left_two_branches(self):
+        self.root.value = 10
+        self.root.add(5)
+        self.root.add(3)
+        self.root.add(7)
+        tree_to_remove = self.root.search_for_value(5)
+        self.root.delete(tree_to_remove)
+        self.assertRaises(ValueError, self.root.search_for_value, 5)
+        self.assertEqual(7, self.root.left.right.value)
+        self.assertEqual(3, self.root.left.value)
