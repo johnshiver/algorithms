@@ -39,30 +39,35 @@ class BinaryTree(object):
             else:
                 self.left.add(new_value)
 
-    def delete(self, delete_value):
-        # TODO: this is under construction
-        if delete_value is None:
-            raise ValueError("Cannot delete None!")
-        try:
-            deleted_node = self.search_for_value(delete_value)
-        except ValueError:
-            "Couldnt delete node, it wasnt there!"
-        else:
-            if not deleted_node.parent:
-                raise ValueError("cant delete the root node!")
-            # if on right side
-            if deleted_node.parent.right == deleted_node:
-                if self._is_leaf(deleted_node):
-                    deleted_node.parent.right = None
-                elif self._has_one_branch(deleted_node):
-                    deleted_node.parent.right = deleted_node.right if deleted_node.right else deleted_node.left
+    def delete(self, tree):
+        if not tree.parent:
+            raise ValueError("cant delete the root node!")
+        # if on right side
+        if tree.parent.right == tree:
+            if self._is_leaf(tree):
+                tree.parent.right = None
+            elif self._has_one_branch(tree):
+                replacement = tree.right if tree.right else tree.left
+                tree.parent.right = replacement
+            else:  # can assume two branches
+                replacement = tree.right
+                while not self._is_leaf(replacement):
+                    replacement = replacement.right
+                tree.parent.right.value = replacement.value
+                self.delete(replacement)
             # if on left side
-            else:
-                if self._is_leaf(deleted_node):
-                    deleted_node.parent.left = None
-                elif self._has_one_branch(deleted_node):
-                    deleted_node.parent.left = deleted_node.left if deleted_node.left else deleted_node.right
-        return
+        else:
+            if self._is_leaf(tree):
+                tree.parent.left = None
+            elif self._has_one_branch(tree):
+                replacement = tree.left if tree.left else tree.right
+                tree.parent.left = replacement
+            else:  # can assume two branches
+                replacement = tree.left
+                while not self._is_leaf(replacement):
+                    replacement = replacement.left
+                tree.parent.left.value = replacement.value
+                self.delete(replacement)
 
     def search_for_value(self, search_value):
         if search_value is None:
