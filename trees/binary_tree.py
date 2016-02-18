@@ -63,7 +63,7 @@ class BinaryTree(object):
                 replacement = tree.left if tree.left else tree.right
                 tree.parent.left = replacement
             else:  # can assume two branches
-                replacement = tree.left
+                replacement = tree.right
                 while not self._is_leaf(replacement):
                     replacement = replacement.left
                 tree.parent.left.value = replacement.value
