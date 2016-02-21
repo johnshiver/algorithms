@@ -1,7 +1,6 @@
-import sys
 import os.path
+import sys
 import unittest
-
 
 sys.path.append(os.path.join(os.path.abspath(os.pardir), "trees"))
 from trees.binary_tree import BinaryTree
@@ -133,3 +132,48 @@ class TestBinaryTree(unittest.TestCase):
         self.assertRaises(ValueError, self.root.search_for_value, 5)
         self.assertEqual(3, self.root.left.left.value)
         self.assertEqual(7, self.root.left.value)
+
+    def test_max_depth_0(self):
+        self.root.value = 10
+        self.assertEqual(0, self.root.max_depth())
+
+    def test_max_depth_1(self):
+        self.root.value = 10
+        self.root.add(5)
+        self.assertEqual(1, self.root.max_depth())
+        self.root.add(13)
+        self.assertEqual(1, self.root.max_depth())
+
+    def test_max_depth_2(self):
+        self.root.value = 10
+        self.root.add(5)
+        self.root.add(3)
+        self.assertEqual(2, self.root.max_depth())
+
+    def test_max_depth_2_nested(self):
+        self.root.value = 10
+        self.root.add(5)
+        self.root.add(7)
+        self.assertEqual(2, self.root.max_depth())
+
+    def test_max_depth_3(self):
+        self.root.value = 10
+        self.root.add(5)
+        self.root.add(3)
+        self.root.add(1)
+        self.assertEqual(3, self.root.max_depth())
+
+    def test_max_depth_3_nested_left(self):
+        self.root.value = 10
+        self.root.add(5)
+        self.root.add(7)
+        self.root.add(9)
+        self.assertEqual(3, self.root.max_depth())
+
+    def test_max_depth_3_nested_right(self):
+        self.root.value = 10
+        self.root.add(12)
+        self.root.add(15)
+        self.root.add(11)
+        self.root.add(16)
+        self.assertEqual(3, self.root.max_depth())

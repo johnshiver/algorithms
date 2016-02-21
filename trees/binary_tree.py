@@ -80,6 +80,17 @@ class BinaryTree(object):
             return self.left.search_for_value(search_value)
         raise ValueError
 
+    def max_depth(self):
+
+        if not self.right and not self.left:
+            return 0
+        right = left = 0
+        if self.right:
+            right = 1 + self.right.max_depth()
+        if self.left:
+            left = 1 + self.left.max_depth()
+        return max(right, left)
+
     @staticmethod
     def _is_leaf(tree):
         return all(branch is None for branch in (tree.left, tree.right))
