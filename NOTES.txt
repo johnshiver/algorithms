@@ -84,7 +84,7 @@ Terms:
                         so left is different than right
 
   "binary search tree": labels each node in a binary tree with a single key
-                        such that for any node labled x, all nodes left
+                        such that for any node labeled x, all nodes left
                         subtree of x have keys < x while all nodes right
                         subtree of x have keys > x.
 
@@ -98,3 +98,51 @@ Notes:
  -
 
 #---------------------------------------------------------------------#
+
+# ---------------------------  Graphs  ------------------------------ #
+
+Notes
+
+What is a graph?
+
+- linked list + arrays organize data sequentially, they are linear
+  structures. useful for iterating over all elements or accesing
+  elements via index
+
+- other data structures, such as trees, are hierarchical structures
+  parent / child, for example.
+
+- graphs represent relationships between objects
+
+Basic objects: vertices, nodes
+Relationships between them: edges, arcs, links
+
+Examples:
+
+- Basic object: websites
+- Relationship between them: hyperlinks
+
+- Basic object: cell phone towers
+- Relationships between them: coverage area overlaps
+
+- Basic object: people
+- Relationship between them: friends
+
+- Basic object: cities
+- Relationship between them: nonstop flight
+
+What kind of questions can we ask of the graph:
+
+- Are two vertices adjacent?
+- Is the graph dense? Sparse?
+- How far are two vertices in the graph?
+- How many components are there in the graph?
+- Can we find a vertex with a particular key value?
+
+Size of graph: |V| + |E| : the sum of vertices and edges
+
+Path: sequence of vertices and edges that depicts hopping along the graph
+
+
+# --------------------------------------------------------------------- #
+
