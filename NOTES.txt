@@ -122,14 +122,8 @@ Examples:
 - Basic object: websites
 - Relationship between them: hyperlinks
 
-- Basic object: cell phone towers
-- Relationships between them: coverage area overlaps
-
 - Basic object: people
 - Relationship between them: friends
-
-- Basic object: cities
-- Relationship between them: nonstop flight
 
 What kind of questions can we ask of the graph:
 
@@ -143,6 +137,30 @@ Size of graph: |V| + |E| : the sum of vertices and edges
 
 Path: sequence of vertices and edges that depicts hopping along the graph
 
+Representations:
+
+1. Adjacency Matrix
+    - use a matrix with rows and columns
+    - row labels and column labels represent vertices
+
+2. Adjacency List
+
+3. Adjacency Set
+  - subset of adj list representation
+
+The graph interface
+
+public interface Graph {
+    enum GraphType {
+        DIRECTED,
+        UNDIRECTED
+    }
+
+    void addEdge(int v1, int v2);
+
+    List<Integer> getAdjacentVertices(int v);
+
+}
 
 # --------------------------------------------------------------------- #
 
