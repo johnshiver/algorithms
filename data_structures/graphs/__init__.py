@@ -35,4 +35,12 @@ space: e + v
 is edge present:  log(degree of v)
 iterate over edges on a vertex:  degree of v
 
+**Take away**
+
+Most systems are represented as sparse graphs
+(most dont have anywhere near max number of connections)
+so adjacency set is likely more useful in most cases
+
+Adjacency matrix useful for ->
+
 """
