@@ -16,5 +16,4 @@ class TestSelectionSort(unittest.TestCase):
 
     def test_sorting_list(self):
         """Tests that test list is correctly sorted."""
-
         self.assertEqual(sorted(self.test_list), selection_sort(self.test_list))
