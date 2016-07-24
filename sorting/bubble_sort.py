@@ -1,5 +1,4 @@
 
-
 def bubble_sort(input_list):
     """
     The smallest element bubbles to the correct position
