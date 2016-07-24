@@ -19,3 +19,9 @@ Sorting Algorithms: Trade offs and considerations
   - as list gets into more sorted state, is algo smart enough to break early
     when the list is sorted, or does it need to go through every iteration?
 """
+
+
+from .bubble_sort import bubble_sort
+from .selection_sort import selection_sort
+from .shell_sort import shell_sort
+from .insertion_sort import insertion_sort
