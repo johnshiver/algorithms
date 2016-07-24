@@ -21,6 +21,9 @@ def shell_sort(input_list):
     - it is also not clear what the best increment value is
     - bottom line: complexity is better than insertion sort as the final
       iteration with increment = 1 works with a nearly sorted list
+    - Complexity is somewhere between O(n) and O(n^2)
+    - Algo is adaptive since its based on insertion sort
+    - takes O(1) extra space, since sort is in place
     """
     def modified_insertion_sort(list_to_sort, start, h):
         """
