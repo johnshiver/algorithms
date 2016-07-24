@@ -14,6 +14,13 @@ def shell_sort(input_list):
 
     The advantage is you are eventually applying insertion sort
     to a nearly sorted list, which is very efficient.
+
+    Discussion:
+    - getting the exact complexity of shell sort is difficult because it
+      depends on the increment value chosen
+    - it is also not clear what the best increment value is
+    - bottom line: complexity is better than insertion sort as the final
+      iteration with increment = 1 works with a nearly sorted list
     """
     def modified_insertion_sort(list_to_sort, start, h):
         """
@@ -22,8 +29,7 @@ def shell_sort(input_list):
                       so as not to interfere with outter scope
         """
         for i in range(start, len(list_to_sort), h):
-            # start with the 'sorted list', look at next element, and count down
-            # make sure not to include 0, because first element is always 'sorted'
+            # apply insertion sort against the incremented set of data
             for j in range(start + h, i+h, h)[::-1]:
                 if list_to_sort[j] < list_to_sort[j - h]:
                     list_to_sort[j - h], list_to_sort[j] = list_to_sort[j], list_to_sort[j - h]
