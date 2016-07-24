@@ -1,15 +1,15 @@
 import random
-
-from sorting import bubble_sort, selection_sort, insertion_sort, shell_sort, merge_sort
-
 import unittest
+
+from sorting import (bubble_sort, insertion_sort, merge_sort, quick_sort,
+                     selection_sort, shell_sort)
 
 
 class TestSorts(unittest.TestCase):
 
     def setUp(self):
         list_of_100 = range(100)
-        self.test_list = [random.choice(list_of_100) for _ in range(100)]
+        self.test_list = [random.choice(list_of_100) for _ in range(1000)]
 
     def tearDown(self):
         self.test_list = None
@@ -33,3 +33,7 @@ class TestSorts(unittest.TestCase):
     def test_merge_sort(self):
         """Tests that test list is correctly sorted."""
         self.assertEqual(sorted(self.test_list), merge_sort(self.test_list))
+
+    def test_quick_sort(self):
+        """Tests that test list is correctly sorted."""
+        self.assertEqual(sorted(self.test_list), quick_sort(self.test_list))
