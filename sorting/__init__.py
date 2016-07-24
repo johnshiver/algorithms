@@ -1,4 +1,6 @@
 """
+# Reference: many notes taken from Udemy "break away coding interviews" class
+
 Sorting Algorithms: Trade offs and considerations
 
 1. Complexity of the algorithm used
