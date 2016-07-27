@@ -36,14 +36,17 @@ def quick_sort(input_list):
         left = start
         right = end
 
+        # figure out where pivot should go
         while left < right:
             while list_to_sort[left] <= pivot and left < right:
                 left += 1
             while list_to_sort[right] > pivot:
                 right -= 1
             if left < right:
+                # move items around if they are in wrong position relative to pivot value
                 list_to_sort[left], list_to_sort[right] = list_to_sort[right], list_to_sort[left]
 
+        # finally, put pivot in the correct spot
         list_to_sort[start], list_to_sort[right] = list_to_sort[right], list_to_sort[start]
 
         return right
