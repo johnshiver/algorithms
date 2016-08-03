@@ -69,9 +69,14 @@ of ALL previous answers, which are kept in an array.
 
 # bottom_up solution to change problem
 def change_possibilities_bottom_up(amount, denominations):
+    # index is the amount and value at each index is the number of ways
+    # of getting that amount
     ways_of_doing_n_cents = [0] * (amount + 1)
+    # start with bse case that there's one way to create the amount zero
+    # and progressively add each of our denominations
     ways_of_doing_n_cents[0] = 1
 
+    import ipdb;ipdb.set_trace()
     for coin in denominations:
         for higher_amount in range(coin, amount + 1):
             higher_amount_remainder = higher_amount - coin
