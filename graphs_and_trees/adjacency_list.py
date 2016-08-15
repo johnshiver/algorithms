@@ -15,32 +15,55 @@ Cons:
       involves looking through all adjacency lists to remove the node from all lists
 """
 
+import sys
+
 
 class Vertex(object):
 
     def __init__(self, key):
         self.id = key
-        self.connected_to = {}
+        self.neighbors = {}
+        self.distance = sys.maxsize
+        self.predecessor = None
+
+    def __repr__(self):
+        return 'Vertex ' + str(self.id) + ': connected to: ' + str([x.id for x
+                                                        in self.neighbors])
 
     def add_neighbor(self, neighbor, weight=0):
-        self.connected_to[neighbor] = weight
+        self.neighbors[neighbor] = weight
 
-    def __str__(self):
-        return str(self.id) + ' connected to: ' + str([x.id for x
-                                                       in self.connected_to])
+    def get_neighbors(self):
+        return self.neighbors.keys()
 
-    def get_connections(self):
-        return self.connected_to.keys()
-
-    def get_weight(self, neighbor):
-        return self.connected_to[neighbor]
+    def get_edge_weight(self, neighbor):
+        return self.neighbors[neighbor]
 
 
 class Graph(object):
 
-    def __init__(self):
+    graph_types = {
+        'directed',
+        'undirected'
+    }
+
+    def __init__(self, graph_type='undirected'):
+        if graph_type not in self.graph_types:
+            raise ValueError("graph_type must be one of {}".format(self.graph_types))
+
         self.vertices = {}
+        self.type_ = graph_type
         self.num_vertices = 0
+        self.num_edges = 0
+
+    def __repr__(self):
+        return "Graph with {} vertices".format(self.num_vertices)
+
+    def __iter__(self):
+        return iter(self.vertices.values())
+
+    def __contains__(self, key):
+        return key in self.vertices
 
     def add_vertex(self, key):
         self.num_vertices += 1
@@ -48,27 +71,21 @@ class Graph(object):
         self.vertices[key] = new_vertex
         return new_vertex
 
+    def add_edge(self, v1, v2, cost=0):
+        if v1 not in self.vertices:
+            self.add_vertex(v1)
+        if v2 not in self.vertices:
+            self.add_vertex(v2)
+        self.vertices[v1].add_neighbor(self.vertices[v2], cost)
+        if self.type_ == 'undirected':
+            self.vertices[v2].add_neighbor(self.vertices[v1], cost)
+        self.num_edges += 1
+
     def get_vertex(self, key):
         try:
             return self.vertices[key]
         except KeyError:
             raise "{} not in graph!".format(key)
 
-    def __contains__(self, key):
-        return key in self.vertices
-
-    def add_edge(self, f, t, cost=0):
-        if f not in self.vertices:
-            self.add_vertex(f)
-        if t not in self.vertices:
-            self.add_vertex(t)
-        self.vertices[f].add_neighbor(self.vertices[t], cost)
-
     def get_vertices(self):
         return self.vertices.keys()
-
-    def __iter__(self):
-        return iter(self.vertices.values())
-
-
-

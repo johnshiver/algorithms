@@ -3,7 +3,7 @@ import sys
 import unittest
 
 sys.path.append(os.path.join(os.path.abspath(os.pardir), "trees"))
-from trees.binary_tree import BinaryTree
+from ..binary_tree import BinaryTree
 
 
 class TestBinaryTree(unittest.TestCase):
