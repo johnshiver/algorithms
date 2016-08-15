@@ -16,16 +16,59 @@ Cons:
 """
 
 
-class Node(object):
+class Vertex(object):
 
-    def __init__(self, vertex_id):
-        self.vertex_id = vertex_id
-        # list of adjacent nodes
-        nodes = []
+    def __init__(self, key):
+        self.id = key
+        self.connected_to = {}
+
+    def add_neighbor(self, neighbor, weight=0):
+        self.connected_to[neighbor] = weight
+
+    def __str__(self):
+        return str(self.id) + ' connected to: ' + str([x.id for x
+                                                       in self.connected_to])
+
+    def get_connections(self):
+        return self.connected_to.keys()
+
+    def get_weight(self, neighbor):
+        return self.connected_to[neighbor]
 
 
-class AdjacencyListGraph(object):
+class Graph(object):
 
     def __init__(self):
-        # list of nodes
-        vertices = []
+        self.vertices = {}
+        self.num_vertices = 0
+
+    def add_vertex(self, key):
+        self.num_vertices += 1
+        new_vertex = Vertex(key)
+        self.vertices[key] = new_vertex
+        return new_vertex
+
+    def get_vertex(self, key):
+        try:
+            return self.vertices[key]
+        except KeyError:
+            raise "{} not in graph!".format(key)
+
+    def __contains__(self, key):
+        return key in self.vertices
+
+    def add_edge(self, f, t, cost=0):
+        if f not in self.vertices:
+            self.add_vertex(f)
+        if t not in self.vertices:
+            self.add_vertex(t)
+        self.vertices[f].add_neighbor(self.vertices[t], cost)
+
+    def get_vertices(self):
+        return self.vertices.keys()
+
+    def __iter__(self):
+        return iter(self.vertices.values())
+
+
+

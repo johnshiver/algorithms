@@ -64,9 +64,7 @@ class Heap(object):
         while current < self.currentSize / 2:
             left_child = self.get_left_child_index(current)
             right_child = self.get_right_child_index(current)
-
-
-
+            max_child = max(self.heapList[left_child], self.heapList[right_child])
 
     @staticmethod
     def get_parent_index(x):
@@ -79,3 +77,10 @@ class Heap(object):
     @staticmethod
     def get_left_child_index(x):
         return (2 * x) + 2
+
+
+
+
+
+
+
