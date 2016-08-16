@@ -23,7 +23,7 @@ class Vertex(object):
     def __init__(self, key):
         self.id = key
         self.neighbors = {}
-        self.distance = sys.maxsize
+        self.distance = 1000000
         self.predecessor = None
 
     def __repr__(self):

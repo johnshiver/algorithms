@@ -19,22 +19,29 @@ def prims_algo(graph, start):
 
 def load_graph_from_file():
     f = open('/home/john/projects/algorithms/graphs_and_trees/test_graph.txt', 'r')
+    #f = open("/home/john/projects/algorithms/graphs_and_trees/mohit_test_data.txt", "r")
     g = Graph()
     edges = []
     for line in f:
         edges.append(line.rstrip('\n'))
+
     for edge in edges:
         edge = edge.split(' ')
+        edge = map(int, edge)
         v1, v2, weight = edge[0], edge[1], edge[2]
         g.add_edge(v1, v2, weight)
     return g
+
+
+def get_min_spanning_cost(graph):
+    final = 0
+    for v in graph:
+        final += v.distance
+
+    return final
 
 if __name__ == '__main__':
     graph = load_graph_from_file()
     start = graph.get_vertex(1)
     prims_algo(graph, start)
-    final = 0
-    for v in graph:
-        final += v.distance
-
-    print(final)
+    print(get_min_spanning_cost(graph))
