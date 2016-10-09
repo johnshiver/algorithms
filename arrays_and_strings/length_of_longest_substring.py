@@ -26,5 +26,15 @@ def length_of_longest_substring(s):
             i += 1
     return max(longest, len(chars))
 
+
+def longest_substring(self, s, k):
+    """
+    length of longest substring with at least k chars
+    """
+    for c in set(s):
+        if s.count(c) < k:
+            return max(self.longestSubstring(t, k) for t in s.split(c))
+    return len(s)
+
 if __name__ == "__main__":
-    print length_of_longest_substring("advd")
+    print(length_of_longest_substring("advd"))
