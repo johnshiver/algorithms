@@ -2,12 +2,13 @@
 problem prompt taken from Cracking Code Interview 6th Ed.
 """
 
+
 def set_zeroes(matrix):
     cols = []
     set_row = False
     for r in range(len(matrix)):
         row = matrix[r]
-            # figure out which columns have 0's
+        # figure out which columns have 0's
         for i in range(len(row)):
             if row[i] == 0:
                 cols.append(i)
@@ -22,8 +23,6 @@ def set_zeroes(matrix):
         for i in cols:
             row[i] = 0
     return matrix
-
-
 
 if __name__ == "__main__":
     matrix = [
