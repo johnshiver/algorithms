@@ -3,7 +3,20 @@ taken from interviewcake solution, thanks!
 """
 
 
-class Trie:
+class Trie(object):
+    """
+    data structure that can be used to compress
+    storage of strings.
+
+    i.e. if you needed to store 1,000,000 URLs,
+    you'll notice that much of the data would
+    overlaps (http://, www, .com, etc)
+
+    A trie can share those chain of common strings
+    and track where they diverge, so when given a new
+    string, determining whether it is already in your
+    data is quite fast / low cost.
+    """
 
     def __init__(self):
 	self.root_node = {}
