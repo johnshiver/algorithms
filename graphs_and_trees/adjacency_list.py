@@ -66,10 +66,13 @@ class Graph(object):
         return key in self.vertices
 
     def add_vertex(self, key):
-        self.num_vertices += 1
-        new_vertex = Vertex(key)
-        self.vertices[key] = new_vertex
-        return new_vertex
+        if key not in self:
+            self.num_vertices += 1
+            new_vertex = Vertex(key)
+            self.vertices[key] = new_vertex
+            return new_vertex
+        else:
+            print("Already have that vertex!")
 
     def add_edge(self, v1, v2, cost=0):
         if v1 not in self.vertices:

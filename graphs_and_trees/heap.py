@@ -1,6 +1,3 @@
-"""
-
-"""
 
 
 class Heap(object):
@@ -77,10 +74,4 @@ class Heap(object):
     @staticmethod
     def get_left_child_index(x):
         return (2 * x) + 2
-
-
-
-
-
-
 
