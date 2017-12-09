@@ -15,4 +15,4 @@ def make_change(amount, coins):
     return possibles[amount]
 
 if __name__ == "__main__":
-    print(make_change(122, [1, 3, 5, 22, 25]))
+    print(make_change(11, [1, 2, 5]))
